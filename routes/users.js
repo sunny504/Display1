@@ -28,4 +28,12 @@ router.post('/', async (req, res) => {
     return res.status(200).send(user);
 });
 
+router.delete('/:id',async (req,res)=>{
+    const user = await User.findByIdAndRemove(req.params.id);
+    if(user){
+        return res.status(200).send(user)
+    }
+    return res.status(400).send("invalid user")
+})
+
 module.exports = router;
